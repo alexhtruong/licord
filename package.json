@@ -1,5 +1,39 @@
 {
+  "name": "licord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/dist/main.cjs",
+  "scripts": {
+    "build:app": "tsc -p app/tsconfig.json",
+    "build:ui": "npm --prefix ui run build",
+    "build": "npm run build:app && npm run build:ui",
+    "dev:app": "tsc -p app/tsconfig.json -w --preserveWatchOutput",
+    "dev:ui": "npm --prefix ui run dev",
+    "dev:electron": "nodemon --watch app/dist --exec \"bash scripts/run-electron.sh\"",
+    "dev": "npm run build:app && concurrently -k -n ui,app,electron -c cyan,magenta,yellow \"npm:dev:ui\" \"npm:dev:app\" \"npm:dev:electron\"",
+    "start": "npm run build && bash scripts/run-electron.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexhtruong/licord.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexhtruong/licord/issues"
+  },
+  "homepage": "https://github.com/alexhtruong/licord#readme",
   "devDependencies": {
-    "electron": "^41.0.3"
-  }
+    "@types/node": "^24.12.0",
+    "concurrently": "^9.2.1",
+    "electron": "^41.0.3",
+    "nodemon": "^3.1.14",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  },
+  "type": "module"
 }

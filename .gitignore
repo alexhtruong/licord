@@ -1,1 +1,16 @@
 node_modules
+.cursor
+
+# local env (keep .env.example tracked)
+.env
+
+# build outputs
+app/dist
+ui/dist
+
+# tooling caches
+ui/node_modules
+ui/.vite
+
+# Rust
+core/target
